@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>鯉の池 · 日式锦鲤池</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <canvas id="scene" aria-label="锦鲤池"></canvas>
+
+  <header id="hud">
+    <div class="title">
+      <h1>鯉<span>の</span>池</h1>
+      <p id="subtitle"></p>
+    </div>
+    <button id="btn-settings" class="icon-btn" aria-label="庭园设定" aria-expanded="false" aria-controls="panel">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M3 6h11.2a3 3 0 0 1 5.6 0H21v2h-1.2a3 3 0 0 1-5.6 0H3V6Zm14 2a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM3 16h1.2a3 3 0 0 1 5.6 0H21v2H9.8a3 3 0 0 1-5.6 0H3v-2Zm4 2a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg>
+    </button>
+  </header>
+
+  <aside id="panel" aria-label="庭园设定">
+    <div class="panel-head">
+      <h2>庭园设定</h2>
+      <button id="btn-close" class="icon-btn small" aria-label="关闭">✕</button>
+    </div>
+    <div class="panel-body">
+      <section>
+        <h3>锦鲤</h3>
+        <div class="field">
+          <label for="fish-count">数量 <em id="fish-count-val">自动</em></label>
+          <input id="fish-count" type="range" min="0" max="40" step="1" value="0" />
+          <small>拖到最左为按屏幕大小自动</small>
+        </div>
+        <div class="field">
+          <label>品种 <small>不选即全部随机，可多选</small></label>
+          <div class="chips" id="chips-species"></div>
+        </div>
+      </section>
+
+      <section>
+        <h3>环境</h3>
+        <div class="field">
+          <label>庭园 <em id="hint-env"></em></label>
+          <div class="seg" id="seg-env"></div>
+        </div>
+        <div class="field">
+          <label>季节 <em id="hint-season"></em></label>
+          <div class="seg" id="seg-season"></div>
+        </div>
+        <div class="field">
+          <label>时辰 <em id="hint-time"></em></label>
+          <div class="seg" id="seg-time"></div>
+        </div>
+        <div class="field">
+          <label>飘落 <em id="hint-weather"></em></label>
+          <div class="chips" id="chips-weather"></div>
+        </div>
+        <div class="field">
+          <label for="intensity">强度 <em id="intensity-val">×1.0</em></label>
+          <input id="intensity" type="range" min="0.2" max="3" step="0.1" value="1" />
+        </div>
+      </section>
+
+      <section>
+        <h3>互动</h3>
+        <label class="toggle"><input type="checkbox" id="opt-follow" checked /><span></span>鲤鱼跟随指针</label>
+        <label class="toggle"><input type="checkbox" id="opt-ripple" checked /><span></span>指针划过水面产生涟漪</label>
+        <p class="tips">点击水面投喂 · <kbd>R</kbd> 重新随机 · <kbd>H</kbd> 隐藏界面</p>
+      </section>
+    </div>
+    <div class="panel-foot">
+      <button id="btn-reroll" class="btn primary">重新随机</button>
+      <button id="btn-share" class="btn">复制链接</button>
+      <button id="btn-reset" class="btn ghost">恢复默认</button>
+    </div>
+  </aside>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/pond.js"></script>
+  <script src="js/koi.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/environment.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    App.start();
+    UI.init();
+  </script>
+</body>
+</html>
